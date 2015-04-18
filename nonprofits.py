@@ -127,12 +127,9 @@ def suffix():
     x = len(source_org)
     # how many words?
     numwords = source_org.count(" ") + 1
-    if numwords == 2:
+    if numwords > 1:
         suf = source_org.rsplit(" ", 2)
         suf = str(suf[-2] + " " + suf[-1])
-    elif numwords > 2:
-        suf = source_org.rsplit(" ", 3)
-        suf = str(suf[-3] + " " + suf[-2] + " " + suf[-1])
     else:
         suf = source_org[-x / 2:]
     if x > 9:
@@ -146,7 +143,7 @@ def new_org_data():
     org2 = suffix()
     new_org_name = org1[2] + " " + org2[2]
     extended_description = (
-        'The', new_org_name, 'is', typeorg(), 'with a mission to', mission(), 'and',
+        new_org_name.upper(), 'is', typeorg(), 'with a mission to', mission(), 'and',
         mission(), longevity(),
         vision(), 'for', constituent() +
         '.')
@@ -158,9 +155,8 @@ def create_nonprofit_list(x=10):
     nonprofit_list = []
     while count < x:
         new_org = new_org_data()
-        org1 = new_org[0].upper()
-        org2 = ' '.join(new_org[1])
-        the_org_info = '\n%s \n%s' % (org1, org2)
+        description = ' '.join(new_org[1])
+        the_org_info = '{d}'.format(d=description)
         nonprofit_list.append(the_org_info)
         count += 1
     return (nonprofit_list)
@@ -168,10 +164,11 @@ def create_nonprofit_list(x=10):
 # Main funciton
 
 
-def main():
-    print 'An Encyclopedia'
-    print '\n'.join(sorted(create_nonprofit_list(10)))
-
+def main(howmany):
+    text = '\n'.join(sorted(create_nonprofit_list(howmany)))
+    print text
+    with open('workfile.txt', 'w') as f:
+        f.write(text)
 
 # EXECUTE
-main()
+main(100)
