@@ -3,3 +3,5 @@ Mission Aligned is a twitter bot by [Mary Dickson](http://www.marydickson.com) t
 I was inspired by Creature Bot by samtb, code available here:
 https://github.com/samtb/A-Full-and-Complete-Reckoning-of-Uncommon-Mythical-and-Monstrous-Creatures
 (thanks Sam!)
+
+See it run at http://repl.it/yD8. 
